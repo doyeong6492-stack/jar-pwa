@@ -1,0 +1,24 @@
+{
+  "name": "자테스트 기록",
+  "short_name": "자테스트",
+  "id": "/jar-pwa/?app=jar-pwa-v5",
+  "start_url": "/jar-pwa/",
+  "scope": "/jar-pwa/",
+  "display": "standalone",
+  "theme_color": "#146a73",
+  "background_color": "#f3f7f8",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#146a73"><link rel="manifest" href="manifest.webmanifest?v=18"><title>Jar Test 기록</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f3f7f8;color:#213b43;font-family:system-ui,"Noto Sans KR",sans-serif}main{max-width:620px;margin:auto;padding:12px 12px 48px}header{display:flex;gap:10px;align-items:center;margin-bottom:12px}header i{font-size:24px;background:#d9efec;border-radius:12px;padding:9px;font-style:normal}h1{font-size:24px;margin:0}h2{font-size:20px}.muted,small{color:#71838b}.card{background:white;border:1px solid #e1eaed;padding:14px;border-radius:16px;margin-bottom:10px;box-shadow:0 2px 12px #1233 06}.buttons,.metrics,.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metrics{margin:10px 0}.metric{background:#f0f7f7;padding:10px;border-radius:12px}.metric strong{display:block;font-size:22px;margin-top:4px}button{border:0;background:#186f78;color:white;padding:12px 14px;border-radius:11px;min-height:44px;font:inherit;font-weight:650;cursor:pointer}.secondary{background:#e5f1f1;color:#195e68}.ghost{background:white;border:1px solid #cfdfe1;color:#195e68}.danger{background:#fff0ed;color:#a43c30}.full{width:100%}.top{display:flex;justify-content:space-between;align-items:center;gap:10px}.link{border:0;background:none;color:#176f79;padding:8px}.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;min-width:0}.field label{font-size:13px;font-weight:700;color:#56747a}input,select,textarea{width:100%;border:1px solid #c9dadd;border-radius:10px;min-height:44px;padding:9px;background:white;color:#203e45;font:inherit}textarea{min-height:70px}table{border-collapse:separate;border-spacing:0 4px;width:100%;table-layout:fixed}th{font-size:12px;color:#648088;font-weight:650}td{text-align:center}td input{text-align:center;padding:8px 2px;font-size:15px;min-width:0}td:first-child{font-weight:700;width:13%}.best{background:#eaf6f5}.best td{font-weight:750}.ml{font-size:14px;color:#4f7077}.hint{font-size:12px;line-height:1.6;color:#69828a}.callout{background:#eaf6f5;border-radius:12px;padding:10px;margin-top:8px;font-size:14px}.page{display:none}.page.active{display:block}.empty{text-align:center;padding:32px 14px;color:#71838b}.record{border-bottom:1px solid #e0eaed;padding:14px 0}.record:last-child{border:0}.pill{font-size:11px;background:#d7efea;color:#176b71;border-radius:999px;padding:5px 8px}.spaced{margin:9px 0 2px}.error{color:#a43c30;font-size:13px}.detail-actions{display:flex;gap:10px}.foot{font-size:12px;color:#748991;line-height:1.5;margin:12px 3px}@media(max-width:390px){.card{padding:13px}.metric strong{font-size:18px}td input{font-size:13px}}@media(prefers-color-scheme:dark){body{background:#101e23;color:#e1eded}.card{background:#1c3036;border-color:#355057}.metric,.callout,.best{background:#254249}input,select,textarea{background:#13272e;color:#e0f0f0;border-color:#45626a}.secondary{background:#30545a;color:#e1eded}.ghost{background:#1c3036;color:#e1eded;border-color:#45626a}.muted,.hint,.foot,small{color:#a4b9bf}}
+
+/* shorter latest-record display and right-bottom return */
+#home h2{margin:5px 0 7px;font-size:19px}
+#home .card>.top h2{margin:0}
+#home .card>small{font-size:12px}
+#home .card .metrics{margin:9px 0}
+#home .card table{margin:7px 0}
+#home .card th{padding-bottom:3px}
+#home .card td{font-size:14px;padding:2px 0}
+#home .card .callout{margin-top:7px;padding:9px 11px}
+#home .detail-actions{margin-top:10px}
+.history-bottom{display:flex;justify-content:flex-end;margin:6px 0 10px}
+.history-bottom button{min-width:116px}
+/* compact mobile-first entry panel */
+#entry .top{margin-bottom:6px}#entry .top h2{margin:8px 0;font-size:19px}
+#entry .card{padding:12px 13px;margin-bottom:9px;border-radius:15px}
+#entry .field{margin-bottom:0;gap:3px}
+#entry .field label{font-size:12px}
+#entry input,#entry select{min-height:39px;padding:7px 9px;font-size:15px}
+#entry .fields{gap:9px}
+#entry .stamp{font-size:12px;color:#607e83;display:flex;justify-content:space-between;align-items:center;gap:5px;margin-bottom:10px}
+#entry .stamp strong{font-weight:600;color:#456f75}
+#entry .stamp input{display:none}
+#entry .card h2{font-size:17px;margin:2px 0}
+#entry .hint{font-size:11px;margin:5px 0;line-height:1.35}
+#entry table{border-spacing:0 3px;margin:5px 0}
+#entry th{font-size:11px;line-height:1.15;padding-bottom:2px}
+#entry td input{min-height:37px;padding:6px 2px;font-size:15px}
+#entry td:first-child{font-size:14px}
+#entry .ml{font-size:13px}
+#entry .callout{font-size:13px;padding:9px 10px;margin-top:7px}
+#entry button.full{min-height:43px}
+@media(max-width:390px){#entry .card{padding:10px}#entry td input{font-size:14px}}
+
+/* v10: 압축은 새 시험 입력 화면에만 적용, 기록 화면은 읽기 편한 크기 유지 */
+#entry .top h2{font-size:18px;margin:4px 0}
+#entry .card{padding:10px 12px;margin-bottom:7px}
+#entry .stamp{margin-bottom:7px}
+#entry .fields{gap:8px}
+#entry .hint{margin:4px 0;line-height:1.3}
+#entry table{border-spacing:0 2px;margin:4px 0}
+#entry td input{min-height:40px}
+#entry .callout{padding:8px 10px;margin-top:5px}
+#entry button.full{min-height:44px}
+/* 이전 기록은 펼치기 없이 6개 비커 결과를 항상 표시 */
+#history .history-return{margin-left:auto}
+#history .detail-actions{align-items:center;flex-wrap:wrap}
+#history .history-return{background:#e5f1f1;color:#195e68}
+@media(max-width:390px){#entry .card{padding:10px}#history .detail-actions{gap:7px}#history .detail-actions button{font-size:13px;padding:10px 11px}}
+
+/* v11: three-screen consistent layout; preserve readable result tables */
+main{padding:12px 12px 24px}
+header{min-height:64px;margin-bottom:8px}
+/* All screens align their first card near the same vertical position. */
+#home #latest{margin-top:47px}
+#entry>.top,#history>.top{height:40px;margin:0 0 8px;align-items:center}
+#entry>.top h2,#history>.top h2{font-size:20px;line-height:1.2;margin:0}
+#entry>.top .link,#history>.top .link{min-height:40px;padding:7px 8px}
+/* Uniform cards and record presentation on Home / History. */
+#home .card,#history .card{padding:14px;border-radius:16px;margin-bottom:10px}
+#home .card h2,#history .card h2{font-size:19px;margin:5px 0 7px}
+#home .card>.top h2,#history .card>.top h2{margin:0}
+#home .card>small,#history .card>small{font-size:12px}
+#home .card .metrics,#history .card .metrics{margin:9px 0}
+#home .card table,#history .card table{margin:7px 0}
+#home .card th,#history .card th{padding-bottom:3px}
+#home .card td,#history .card td{font-size:14px;padding:2px 0}
+#home .card .callout,#history .card .callout{margin-top:7px;padding:9px 11px}
+#home .detail-actions,#history .detail-actions{margin-top:10px;gap:9px}
+#home .detail-actions button,#history .detail-actions button{min-height:43px;padding:10px 13px}
+/* Entry stays comfortably tappable and fits within a typical handset screen. */
+#entry .card{padding:12px 13px;margin-bottom:9px}
+#entry .stamp{margin-bottom:8px}
+#entry .field label{font-size:12px}
+#entry .card h2{font-size:18px;margin:2px 0}
+#entry table{border-spacing:0 3px;margin:6px 0}
+#entry td input{min-height:42px}
+#entry .callout{padding:9px 10px;margin-top:7px}
+#entry button.full{min-height:46px}
+/* A single, aligned edit/delete/back action row for history. */
+#history .detail-actions{flex-wrap:nowrap}
+#history .history-return{margin-left:auto;white-space:nowrap}
+#home .foot,#history .foot{margin-top:10px}
+@media(max-width:390px){
+ #home .card,#history .card{padding:12px}
+ #history .detail-actions{gap:6px}
+ #history .detail-actions button{font-size:13px;padding:9px}
+ #entry .card{padding:11px}
+ #entry td input{min-height:40px}
+}
+
+/* v12: common full-screen minimum height; scrolling remains available. */
+html,body{min-height:100%;}
+main{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;padding-bottom:20px;}
+header{flex:0 0 auto;}
+.page{display:none;}
+.page.active{display:flex;flex-direction:column;flex:1 0 auto;min-height:0;}
+/* Same vertical canvas below the shared header on every screen. */
+#home #latest{margin-top:47px;}
+#home .buttons{margin-top:auto;}
+#entry form{display:flex;flex-direction:column;flex:1;min-height:0;}
+#entry form>button[type="submit"]{margin-top:auto;}
+#history #items{flex:0 0 auto;}
+#history>.foot{margin-top:auto;}
+#detail #detailbox{flex:1 0 auto;}
+/* When cards are taller than a viewport, the document extends and scrolls. */
+@media(max-height:660px){#home #latest{margin-top:16px;}}
+
+/* v13: only compress the six Jar-Test input rows, not the results screens. */
+#entry table{border-spacing:0 0;margin:3px 0;}
+#entry td{padding:0;}
+#entry td input{height:34px;min-height:34px;padding:3px 2px;font-size:15px;border-radius:9px;}
+#entry .card:nth-of-type(2){padding-top:10px;padding-bottom:9px;}
+#entry .card:nth-of-type(2) .hint{margin:3px 0;}
+#entry .card:nth-of-type(2) .callout{margin-top:5px;padding:8px 10px;}
+#entry form{flex:0 0 auto;}
+#entry form>button[type="submit"]{margin-top:0;}
+@media(max-width:390px){#entry td input{height:34px;min-height:34px;}}
+
+/* v14: natural top alignment, no artificial full-screen blank regions. */
+main{min-height:0;display:block;padding:12px 12px 28px;}
+header{min-height:0;margin-bottom:12px;}
+.page.active{display:block;min-height:0;flex:none;}
+#home #latest{margin-top:0;}
+#home .buttons{margin-top:4px;}
+#home .foot,#history .foot{margin:12px 3px 0;}
+#history #items{display:block;}
+#history .history-bottom{margin:10px 0 0;}
+#history .history-bottom button{min-height:44px;}
+#entry form{display:block;min-height:0;flex:none;}
+#entry form>button[type="submit"]{margin-top:4px;}
+#entry .card{padding:12px 13px;margin-bottom:10px;}
+#entry .stamp{margin-bottom:9px;}
+#entry table{border-spacing:0 6px;margin:6px 0;}
+#entry td input{height:35px;min-height:35px;padding:4px 2px;font-size:15px;border-radius:9px;}
+#entry .card:nth-of-type(2){padding:12px 13px 10px;}
+#entry .card:nth-of-type(2) .hint{margin:6px 0 7px;line-height:1.4;}
+#entry .card:nth-of-type(2) .callout{margin-top:6px;padding:9px 10px;}
+@media(max-width:390px){#entry td input{height:35px;min-height:35px;}}
+
+/* v15: remove redundant entry headers, compact top space, and use paired action buttons. */
+.smallghost{background:#eaf3f3;color:#176f79;padding:8px 12px;min-height:34px;border-radius:10px;font-weight:700;white-space:nowrap}
+#entry form{display:block}
+#entry .card{padding:10px 12px;margin-bottom:8px}
+#entry .stamp{margin-bottom:7px}
+#entry .fields{gap:8px}
+#entry .hintbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px}
+#entry .hintbar .hint{margin:0;flex:1;line-height:1.35}
+#entry table{border-spacing:0 4px;margin:4px 0}
+#entry td input{height:34px;min-height:34px;padding:4px 2px}
+#entry .callout{margin-top:4px;padding:8px 10px}
+#entry .entry-actions{display:grid;grid-template-columns:.9fr 1.6fr;gap:10px;margin-top:4px}
+#entry .entry-actions button{min-height:44px}
+#entry .entry-actions .full{width:100%}
+#entry .error{margin-top:8px}
+#history .history-bottom{display:flex;justify-content:flex-end;margin-top:10px}
+#history .history-bottom button{min-width:116px}
+@media(max-width:390px){#entry .hintbar{gap:8px}#entry .smallghost{padding:7px 10px;font-size:13px}#entry .entry-actions{grid-template-columns:1fr 1.4fr}}
+
+/* v18: modest vertical breathing room on results; no fixed-height blank space. */
+#home .card,#history .card{padding:18px 15px 19px;}
+#home .card .metrics,#history .card .metrics{margin:14px 0 12px;}
+#home .card table,#history .card table{border-spacing:0 5px;margin:10px 0;}
+#home .card td,#history .card td{padding:3px 0;}
+#home .card .callout,#history .card .callout{margin-top:11px;padding:12px 11px;}
+#home .card h2,#history .card h2{margin:8px 0 10px;}
+#home .card>.top h2,#history .card>.top h2{margin:0;}
+#history .history-bottom{margin-top:10px;}
+@media(max-width:390px){#home .card,#history .card{padding:16px 13px 17px;}}
+</style></head><body><main><header><i>🧪</i><div><h1>Jar Test</h1><small>자테스트 기록 · 최근 2회 보관</small></div></header>
+<section id="home" class="page active"><div id="latest"></div><div class="buttons"><button id="new">＋ 새 시험 입력</button><button id="historybtn" class="secondary">이전 기록</button></div><p class="foot">기록은 이 기기의 브라우저에만 저장됩니다. 앱 삭제 또는 브라우저 데이터 삭제 시 없어질 수 있습니다. 공식 업무기록을 대체하지 않는 보조용입니다.</p></section>
+<section id="entry" class="page"><form id="form"><div class="card"><div class="stamp"><span>시험 날짜 <strong id="dateview"></strong></span><span>자동 기록</span><input id="date" type="datetime-local" required></div><div class="fields"><div class="field"><label for="agent">응집제</label><select id="agent"><option>PAC 3종</option><option>MidBACS903</option></select></div><div class="field"><label for="raw">원수 탁도 (NTU)</label><input id="raw" type="number" step="any" min="0" inputmode="decimal" required placeholder="직접 입력"></div></div></div><div class="card"><div class="hintbar"><p class="hint">농도 직접 입력 · 주입량(mL) = 농도(ppm) × 0.2</p><button class="smallghost" id="autofill" type="button">연속 입력</button></div><table><thead><tr><th>비커</th><th>농도<br>ppm</th><th>주입량<br>mL</th><th>탁도<br>NTU</th></tr></thead><tbody id="cups"></tbody></table><div id="minimum" class="callout">탁도를 입력하면 최저값을 표시합니다.</div></div><div class="entry-actions"><button type="button" class="secondary" data-page="home">취소</button><button class="full" type="submit">시험 기록 저장</button></div><p id="error" class="error"></p></form></section>
+<section id="history" class="page"><div id="items"></div><p class="foot">최근 2건만 보관합니다. 새로운 기록을 저장하면 가장 오래된 기록을 교체합니다.</p></section>
+<section id="detail" class="page"><div class="top"><h2>시험 상세</h2><button class="link" id="back">돌아가기</button></div><div id="detailbox"></div></section>
+</main><script>
+(()=>{'use strict';const key='jartest_recent2_v1',by=id=>document.getElementById(id);let list=read(),editId=null,detailId=null,returnTo='home';function read(){try{let x=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(x)?x.filter(r=>r&&Array.isArray(r.cups)).slice(0,2):[]}catch{return []}}function store(a){try{localStorage.setItem(key,JSON.stringify(a));list=a;return true}catch{alert('기기에 저장하지 못했습니다. 브라우저 저장 설정을 확인하세요.');return false}}function h(x){return String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function fmt(x){return String(x||'').slice(0,10).replaceAll('-','.')}function sorted(){return [...list].sort((a,b)=>b.date.localeCompare(a.date))}function doseMl(x){return x===''||!Number.isFinite(+x)?'—':(+x*.2).toFixed(2)}function min(r){let a=r.cups.map((c,i)=>({i,n:Number(c.turb),dose:Number(c.dose)})).filter(v=>r.cups[v.i].turb!==''&&r.cups[v.i].dose!==''&&Number.isFinite(v.n)&&v.n>=0&&Number.isFinite(v.dose)&&v.dose>=0);return a.length?a.reduce((p,c)=>c.n<p.n||(c.n===p.n&&(c.dose<p.dose||(c.dose===p.dose&&c.i<p.i)))?c:p):null}function chosen(r){let m=min(r);return m?h(r.cups[m.i].dose)+' ppm':'미선정'}function cupTable(r){let m=min(r);return `<table><thead><tr><th>비커</th><th>농도<br>ppm</th><th>주입량<br>mL</th><th>탁도<br>NTU</th></tr></thead><tbody>${r.cups.map((c,i)=>`<tr${m&&m.i===i?' class="best"':''}><td>${i+1}${m&&m.i===i?' ✓':''}</td><td>${h(c.dose||'—')}</td><td class="ml">${doseMl(c.dose)}</td><td>${h(c.turb||'—')}</td></tr>`).join('')}</tbody></table><div class="callout">${m?'선정: '+(m.i+1)+'번 비커 · '+h(r.cups[m.i].dose)+' ppm · '+h(r.cups[m.i].turb)+' NTU':'탁도 결과 미입력'}</div>`}function renderPage(name){if(!document.getElementById(name)?.classList.contains('page'))name='home';document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===name));if(name==='home')home();if(name==='history')renderHistory();window.scrollTo(0,0)}
+// 실제 브라우저 방문 기록에 앱 내부 화면을 추가한다. Android 뒤로가기는 popstate로 처리된다.
+function page(name){if(name==='home'&&(window.history.state?.jarDepth||0)>0){backToHome();return}if(document.querySelector('.page.active')?.id!==name){const depth=(window.history.state?.jarDepth||0)+1;window.history.pushState({jarPage:name,jarDepth:depth},'',location.href)}renderPage(name)}
+function backToHome(){const depth=window.history.state?.jarDepth||0;if(depth>0)window.history.go(-depth);else renderPage('home')}
+window.addEventListener('popstate',e=>renderPage(e.state?.jarPage||'home'));
+// 새로 열거나 새로고침해도 시작 화면은 홈으로 처리한다.
+if(!window.history.state?.jarPage)window.history.replaceState({jarPage:'home',jarDepth:0},'',location.href);
+
+function recordCard(r,label,withBack=false){return `<div class="card"><div class="top"><h2>${label}</h2><span class="pill">${label==='최근 자테스트'?'최신':'이전'}</span></div><small>${h(fmt(r.date))}</small><h2>${h(r.agent)}</h2><div class="metrics"><div class="metric"><small>원수 탁도</small><strong>${h(r.raw)} NTU</strong></div><div class="metric"><small>선정 주입농도</small><strong>${chosen(r)}</strong></div></div>${cupTable(r)}</div>`}
+function home(){let r=sorted()[0];by('latest').innerHTML=r?recordCard(r,'최근 자테스트'):'<div class="card empty"><div style="font-size:34px">🧪</div><h2>저장된 시험이 없습니다</h2><p>자테스트를 기록하면 최신 시험 결과가 여기에 바로 표시됩니다.</p></div>'}
+function renderHistory(){let prior=sorted()[1];by('items').innerHTML=(prior?recordCard(prior,'이전 기록'):'<div class="card empty">이전 시험 기록이 없습니다.<br><small>새 시험을 한 번 더 저장하면 이곳에서 확인할 수 있습니다.</small></div>')+'<div class="history-bottom"><button type="button" class="secondary" data-back-home="1">← 돌아가기</button></div>'}
+function now(){let d=new Date(),pad=v=>String(v).padStart(2,'0');return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`}function cups(){return [...by('cups').querySelectorAll('tr')].map(t=>({dose:t.querySelector('.d').value.trim(),turb:t.querySelector('.t').value.trim()}))}function rows(data){by('cups').innerHTML=Array.from({length:6},(_,i)=>`<tr><td>${i+1}</td><td><input aria-label="${i+1}번 농도" class="d" tabindex="${i+1}" type="text" inputmode="decimal" autocomplete="off" value="${h(data[i]?.dose??'')}"></td><td class="ml">${doseMl(data[i]?.dose??'')}</td><td><input aria-label="${i+1}번 탁도" class="t" tabindex="${i+7}" type="text" inputmode="decimal" autocomplete="off" value="${h(data[i]?.turb??'')}"></td></tr>`).join('');by('cups').querySelectorAll('input').forEach(x=>{x.addEventListener('input',recalc);x.addEventListener('focus',()=>x.select());x.addEventListener('click',()=>x.select());x.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();let group=x.classList.contains('d')?'d':'t',a=[...by('cups').querySelectorAll('.'+group)],i=a.indexOf(x);if(a[i+1])a[i+1].focus();else if(group==='d')by('cups').querySelector('.t').focus();else x.blur()}})});recalc()}function recalc(){let a=cups();by('cups').querySelectorAll('tr').forEach((tr,i)=>tr.querySelector('.ml').textContent=doseMl(a[i].dose));let m=min({cups:a});by('minimum').textContent=m?'자동 선정: '+(m.i+1)+'번 비커 · '+a[m.i].dose+' ppm · '+a[m.i].turb+' NTU':'탁도를 입력하면 자동으로 선정합니다.'}
+function editor(id=null){editId=id;let r=list.find(x=>x.id===id),last=sorted()[0];by('date').value=r?.date||now();by('dateview').textContent=fmt(by('date').value);by('agent').value=r?.agent||'PAC 3종';by('raw').value=r?.raw||'';by('error').textContent='';rows(r?.cups||last?.cups.map(c=>({dose:c.dose,turb:''}))||Array.from({length:6},(_,i)=>({dose:String(11+i),turb:''})));page('entry')}
+by('form').addEventListener('submit',e=>{e.preventDefault();let c=cups(),raw=by('raw').value,err='';if(c.some(x=>[x.dose,x.turb].some(v=>v!==''&&(!Number.isFinite(+v)||+v<0))))err='숫자는 0 이상이어야 합니다.';else if(c.every(x=>x.dose===''&&x.turb===''))err='비커 결과를 입력하세요.';else if(c.some(x=>(x.dose==='')!==(x.turb==='')))err='각 비커의 농도와 탁도를 함께 입력하세요.';else if(raw===''||+raw<0||!by('date').value)err='시험 날짜와 원수 탁도를 입력하세요.';if(err){by('error').textContent=err;return}let r={id:editId||Date.now().toString(36)+Math.random().toString(36).slice(2),date:by('date').value,agent:by('agent').value,raw,cups:c};let a=list.filter(x=>x.id!==r.id).concat(r).sort((a,b)=>b.date.localeCompare(a.date));if(!editId&&a.length>2&&!confirm('새 기록을 저장하면 가장 오래된 시험 기록이 삭제됩니다. 계속할까요?'))return;if(store(a.slice(0,2)))page('home')});by('new').onclick=()=>editor();by('historybtn').onclick=()=>page('history');document.querySelectorAll('[data-page]').forEach(x=>x.onclick=()=>page(x.dataset.page));by('back').onclick=()=>page(returnTo);by('autofill').onclick=()=>{let first=prompt('1번 비커의 시작 농도(ppm)',cups()[0].dose||'11');if(first===null)return;let step=prompt('비커 간 농도 간격(ppm)','1');if(step===null)return;if(!first.trim()||!step.trim()||![+first,+step].every(x=>Number.isFinite(x)&&x>=0)){alert('0 이상의 숫자를 입력하세요.');return}by('cups').querySelectorAll('.d').forEach((el,i)=>el.value=String(Math.round((+first+i*(+step))*10000)/10000));recalc()};document.addEventListener('click',e=>{if(e.target.closest('[data-back-home]')){backToHome();return}let v=e.target.closest('[data-edit]');if(v)editor(v.dataset.edit);v=e.target.closest('[data-delete]');if(v&&confirm('이 시험 기록을 삭제할까요?')){if(store(list.filter(x=>x.id!==v.dataset.delete)))page(document.querySelector('.page.active').id)}});home();if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=18').catch(()=>{}));
+})();
+</script></body></html>

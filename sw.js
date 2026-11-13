@@ -1,5 +1,5 @@
-const C='jar-pwa-v24-transparent';
-const A=['./','./index.html','./manifest.webmanifest','./icon-192-transparent-v24.png','./icon-512-transparent-v24.png'];
+const C='jar-pwa-v26-noborder';
+const A=['./','./index.html','./manifest.webmanifest','./icon-192-noborder-v26.png','./icon-512-noborder-v26.png'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(A)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(v=>v.startsWith('jar-pwa-')&&v!==C).map(v=>caches.delete(v)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{
